@@ -15,11 +15,11 @@ Desenvolver a interface visual da PWA, permitindo que o operador insira o ID da 
 
 ## Subtarefas
 
-- [ ] 4.1 Criar Contexto/Store para gerenciar estado da Sessão (`sessionId`, `isTracking`, `logs`)
-- [ ] 4.2 Implementar Componente de Input de Sessão
-- [ ] 4.3 Implementar Painel de Controle (Botões e Indicadores)
-- [ ] 4.4 Implementar Componente de Log Visual (scrollable area)
-- [ ] 4.5 Testes unitários dos componentes React e do Contexto
+- [x] 4.1 Criar Contexto/Store para gerenciar estado da Sessão (`sessionId`, `isTracking`, `logs`)
+- [x] 4.2 Implementar Componente de Input de Sessão
+- [x] 4.3 Implementar Painel de Controle (Botões e Indicadores)
+- [x] 4.4 Implementar Componente de Log Visual (scrollable area)
+- [x] 4.5 Testes unitários dos componentes React e do Contexto
 
 ## Detalhes de Implementação
 

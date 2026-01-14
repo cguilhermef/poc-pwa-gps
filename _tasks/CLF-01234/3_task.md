@@ -15,11 +15,11 @@ Implementar a lógica da API utilizando Koa.js, expondo os endpoints definidos e
 
 ## Subtarefas
 
-- [ ] 3.1 Configurar entrypoint do Koa em `api/index.ts`
-- [ ] 3.2 Implementar rota `GET /api/status`
-- [ ] 3.3 Implementar rota `POST /api/track` com validação de payload (recebe array)
-- [ ] 3.4 Implementar rota `GET /api/tracks/:sessionId` com query no Supabase
-- [ ] 3.5 Adicionar testes unitários para os handlers das rotas (mockando Supabase)
+- [x] 3.1 Configurar entrypoint do Koa em `api/index.ts`
+- [x] 3.2 Implementar rota `GET /api/status`
+- [x] 3.3 Implementar rota `POST /api/track` com validação de payload (recebe array)
+- [x] 3.4 Implementar rota `GET /api/tracks/:sessionId` com query no Supabase
+- [x] 3.5 Adicionar testes unitários para os handlers das rotas (mockando Supabase)
 
 ## Detalhes de Implementação
 

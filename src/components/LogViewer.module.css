@@ -1,0 +1,108 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1;
+  min-height: 200px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.clearButton {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  background-color: transparent;
+  border: 1px solid #3a3a3a;
+  color: #888;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.clearButton:hover {
+  border-color: #646cff;
+  color: #646cff;
+}
+
+.logList {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.emptyMessage {
+  color: #666;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.logItem {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.logItem:last-child {
+  border-bottom: none;
+}
+
+.timestamp {
+  color: #666;
+  flex-shrink: 0;
+}
+
+.level {
+  flex-shrink: 0;
+  font-weight: 600;
+}
+
+.message {
+  word-break: break-word;
+}
+
+.info .level {
+  color: #3b82f6;
+}
+
+.success .level {
+  color: #22c55e;
+}
+
+.warning .level {
+  color: #f59e0b;
+}
+
+.error .level {
+  color: #ef4444;
+}
+
+@media (prefers-color-scheme: light) {
+  .logList {
+    background-color: #f5f5f5;
+  }
+
+  .logItem {
+    border-bottom-color: #e5e5e5;
+  }
+
+  .clearButton {
+    border-color: #ddd;
+  }
+}

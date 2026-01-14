@@ -1,35 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect } from 'react';
+import { SessionProvider, useSession } from './contexts/SessionContext';
+import { SessionInput, ControlPanel, LogViewer } from './components';
+import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+function AppContent() {
+  const { setOnlineStatus, addLog } = useSession();
+
+  useEffect(() => {
+    const handleOnline = () => {
+      setOnlineStatus(true);
+      addLog('success', 'Conexão restabelecida');
+    };
+
+    const handleOffline = () => {
+      setOnlineStatus(false);
+      addLog('warning', 'Conexão perdida - modo offline');
+    };
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, [setOnlineStatus, addLog]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <main className="app-container">
+      <header className="app-header">
+        <h1 className="app-title">WIMT Tracker</h1>
+        <p className="app-subtitle">PoC PWA Rastreamento de Localização</p>
+      </header>
+
+      <section className="app-section" aria-label="Configuração de sessão">
+        <SessionInput />
+      </section>
+
+      <section className="app-section" aria-label="Controles de rastreamento">
+        <ControlPanel />
+      </section>
+
+      <section className="app-section app-logs" aria-label="Logs do sistema">
+        <LogViewer />
+      </section>
+    </main>
+  );
+}
+
+function App() {
+  return (
+    <SessionProvider>
+      <AppContent />
+    </SessionProvider>
+  );
 }
 
 export default App
