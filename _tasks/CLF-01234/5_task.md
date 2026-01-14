@@ -14,11 +14,11 @@ Implementar a lógica core de captura de posição GPS. Deve abstrair a API `nav
 
 ## Subtarefas
 
-- [ ] 5.1 Criar `LocationService` (classe ou hook)
-- [ ] 5.2 Implementar solicitação de permissão e handling de resposta (Denied/Granted)
-- [ ] 5.3 Implementar listener `watchPosition` com options (`enableHighAccuracy`)
-- [ ] 5.4 Formatar dados crus do GPS para a interface `LocationPoint`
-- [ ] 5.5 Testes unitários do Service (mockando `navigator.geolocation`)
+- [x] 5.1 Criar `LocationService` (classe ou hook)
+- [x] 5.2 Implementar solicitação de permissão e handling de resposta (Denied/Granted)
+- [x] 5.3 Implementar listener `watchPosition` com options (`enableHighAccuracy`)
+- [x] 5.4 Formatar dados crus do GPS para a interface `LocationPoint`
+- [x] 5.5 Testes unitários do Service (mockando `navigator.geolocation`)
 
 ## Detalhes de Implementação
 
