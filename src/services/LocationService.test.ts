@@ -7,7 +7,7 @@ import {
 } from './LocationService';
 import type { LocationPoint } from '../types';
 
-const mockPosition: GeolocationPosition = {
+const mockPosition = {
   coords: {
     latitude: -23.5505,
     longitude: -46.6333,
@@ -18,7 +18,7 @@ const mockPosition: GeolocationPosition = {
     speed: 5,
   },
   timestamp: 1704067200000,
-};
+} as unknown as GeolocationPosition;
 
 const mockPositionError = (code: number): GeolocationPositionError => ({
   code,
@@ -46,11 +46,11 @@ describe('LocationService', () => {
       watchPosition: mockWatchPosition,
       clearWatch: mockClearWatch,
       getCurrentPosition: mockGetCurrentPosition,
-    };
+    } as unknown as Geolocation;
 
     mockPermissions = {
       query: mockPermissionsQuery,
-    };
+    } as unknown as Permissions;
   });
 
   afterEach(() => {
@@ -318,7 +318,7 @@ describe('formatPositionToLocationPoint', () => {
   });
 
   it('handles null values in coords', () => {
-    const positionWithNulls: GeolocationPosition = {
+    const positionWithNulls = {
       coords: {
         latitude: -23.5505,
         longitude: -46.6333,
@@ -329,7 +329,7 @@ describe('formatPositionToLocationPoint', () => {
         speed: null,
       },
       timestamp: 1704067200000,
-    };
+    } as unknown as GeolocationPosition;
 
     const result = formatPositionToLocationPoint(positionWithNulls);
 

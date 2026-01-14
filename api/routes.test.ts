@@ -43,7 +43,7 @@ async function executeRoute(
     });
   }
 
-  await layer.stack[0](ctx);
+  await layer.stack[0](ctx, async () => {});
   return ctx;
 }
 
