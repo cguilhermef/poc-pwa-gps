@@ -9,9 +9,11 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "test:supabase": "tsx --env-file=.env.local scripts/test-supabase-connection.ts"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.90.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
@@ -31,6 +33,7 @@
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
     "jsdom": "^27.4.0",
+    "tsx": "^4.21.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.46.4",
     "vite": "^7.2.4",

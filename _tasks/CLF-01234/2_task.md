@@ -14,11 +14,11 @@ Configurar a conexão com o Supabase e definir os tipos TypeScript compartilhado
 
 ## Subtarefas
 
-- [ ] 2.1 Criar arquivo SQL de definição da tabela `tracking_points` conforme Tech Spec
-- [ ] 2.2 Criar arquivo de tipos compartilhados `src/types/index.ts` (ou local apropriado importável por ambos)
-- [ ] 2.3 Instalar `@supabase/supabase-js`
-- [ ] 2.4 Criar módulo de cliente Supabase (`src/lib/supabase.ts` e `api/lib/supabase.ts` se necessário separar contextos)
-- [ ] 2.5 Testar conexão com Supabase via script simples (mockando env vars)
+- [x] 2.1 Criar arquivo SQL de definição da tabela `tracking_points` conforme Tech Spec
+- [x] 2.2 Criar arquivo de tipos compartilhados `src/types/index.ts` (ou local apropriado importável por ambos)
+- [x] 2.3 Instalar `@supabase/supabase-js`
+- [x] 2.4 Criar módulo de cliente Supabase (`src/lib/supabase.ts` e `api/lib/supabase.ts` se necessário separar contextos)
+- [x] 2.5 Testar conexão com Supabase via script simples (mockando env vars)
 
 ## Detalhes de Implementação
 
