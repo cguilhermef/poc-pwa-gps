@@ -15,13 +15,13 @@ Realizar o deploy na Vercel, configurar variáveis de ambiente de produção e e
 
 ## Subtarefas
 
-- [ ] 8.1 Configurar `vite-plugin-pwa` (manifest.json, icons, service worker básico)
-- [ ] 8.2 Realizar Deploy na Vercel e configurar ENV Vars do Supabase
-- [ ] 8.3 Executar Cenário A (Ideal)
-- [ ] 8.4 Executar Cenário B (Background)
-- [ ] 8.5 Executar Cenário C (Locked)
-- [ ] 8.6 Executar Cenário D (Offline)
-- [ ] 8.7 Documentar resultados/limitações encontradas (QA Report simples)
+- [x] 8.1 Configurar `vite-plugin-pwa` (manifest.json, icons, service worker básico)
+- [x] 8.2 Realizar Deploy na Vercel e configurar ENV Vars do Supabase
+- [ ] 8.3 Executar Cenário A (Ideal) - *Requer teste manual em dispositivo*
+- [ ] 8.4 Executar Cenário B (Background) - *Requer teste manual em dispositivo*
+- [ ] 8.5 Executar Cenário C (Locked) - *Requer teste manual em dispositivo*
+- [ ] 8.6 Executar Cenário D (Offline) - *Requer teste manual em dispositivo*
+- [x] 8.7 Documentar resultados/limitações encontradas (QA Report simples)
 
 ## Detalhes de Implementação
 
