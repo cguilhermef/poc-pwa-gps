@@ -2,6 +2,7 @@ import { useEffect, useRef, useCallback } from 'react';
 import { useSession } from '../contexts/SessionContext';
 import { LocationService, type LocationError } from '../services/LocationService';
 import { SyncService, type SyncStatus } from '../services/SyncService';
+import { WakeLockService } from '../services/WakeLockService';
 import type { LocationPoint } from '../types';
 
 export interface UseSyncReturn {
@@ -19,6 +20,7 @@ export function useSync(): UseSyncReturn {
 
   const locationServiceRef = useRef<LocationService | null>(null);
   const syncServiceRef = useRef<SyncService | null>(null);
+  const wakeLockServiceRef = useRef<WakeLockService | null>(null);
   const syncStatusRef = useRef<SyncStatus>('idle');
 
   const getLocationService = useCallback(() => {
@@ -33,6 +35,13 @@ export function useSync(): UseSyncReturn {
       syncServiceRef.current = new SyncService();
     }
     return syncServiceRef.current;
+  }, []);
+
+  const getWakeLockService = useCallback(() => {
+    if (!wakeLockServiceRef.current) {
+      wakeLockServiceRef.current = new WakeLockService();
+    }
+    return wakeLockServiceRef.current;
   }, []);
 
   useEffect(() => {
@@ -97,11 +106,35 @@ export function useSync(): UseSyncReturn {
     locationService.start(handleLocation, handleError);
     syncService.startRecoveryLoop();
 
+    const wakeLockService = getWakeLockService();
+    wakeLockService.setCallbacks({
+      onStateChange: (state) => {
+        if (state === 'active') {
+          addLog('info', 'Wake Lock ativado - rastreamento continuará com tela bloqueada');
+        } else if (state === 'released') {
+          addLog('warning', 'Wake Lock liberado - rastreamento pode pausar com tela bloqueada');
+        } else if (state === 'unsupported') {
+          addLog('warning', 'Wake Lock não suportado neste navegador');
+        }
+      },
+      onError: (error) => {
+        addLog('warning', `Wake Lock falhou: ${error.message}`);
+      },
+    });
+    wakeLockService.acquire();
+
+    const handleVisibilityChange = () => {
+      wakeLockService.reacquireOnVisibilityChange();
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     return () => {
       locationService.stop();
       syncService.stopRecoveryLoop();
+      wakeLockService.release();
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, [isTracking, getLocationService, getSyncService, addLog]);
+  }, [isTracking, getLocationService, getSyncService, getWakeLockService, addLog]);
 
   return {
     syncStatus: syncStatusRef.current,
