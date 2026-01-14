@@ -1,11 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 
-vi.mock('./lib/supabase', () => ({
+vi.mock('./lib/supabase.js', () => ({
   getSupabaseClient: vi.fn(),
 }));
 
-import router from './routes';
-import { getSupabaseClient } from './lib/supabase';
+import router from './routes.js';
+import { getSupabaseClient } from './lib/supabase.js';
 
 function createMockContext(options: {
   method?: string;
