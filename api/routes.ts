@@ -1,6 +1,6 @@
 import Router from '@koa/router';
-import { getSupabaseClient } from './lib/supabase';
-import type { TrackPayload, LocationPoint, TrackingPointInsert } from '../src/types';
+import { getSupabaseClient } from './lib/supabase.js';
+import type { TrackPayload, LocationPoint, TrackingPointInsert } from '../src/types.js';
 
 const router = new Router();
 

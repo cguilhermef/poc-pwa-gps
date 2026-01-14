@@ -1,8 +1,8 @@
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import cors from '@koa/cors';
-import router from './routes';
-import { createVercelHandler } from './lib/koa-vercel-adapter';
+import router from './routes.js';
+import { createVercelHandler } from './lib/koa-vercel-adapter.js';
 
 const app = new Koa();
 
