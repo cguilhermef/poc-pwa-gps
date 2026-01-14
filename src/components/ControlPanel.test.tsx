@@ -3,6 +3,14 @@ import { render, screen } from '@testing-library/react';
 import { ControlPanel } from './ControlPanel';
 import { SessionProvider } from '../contexts/SessionContext';
 
+vi.mock('../hooks/useSync', () => ({
+  useSync: () => ({
+    syncStatus: 'idle',
+    acquireWakeLock: vi.fn().mockResolvedValue(undefined),
+    releaseWakeLock: vi.fn().mockResolvedValue(undefined),
+  }),
+}));
+
 function renderWithProvider(ui: React.ReactElement) {
   return render(<SessionProvider>{ui}</SessionProvider>);
 }

@@ -1,4 +1,5 @@
 import { useSession } from '../contexts/SessionContext';
+import { useSync } from '../hooks/useSync';
 import styles from './ControlPanel.module.css';
 
 export function ControlPanel() {
@@ -13,10 +14,13 @@ export function ControlPanel() {
     addLog,
   } = useSession();
 
+  const { acquireWakeLock } = useSync();
+
   const canStart = sessionId.trim().length > 0 && !isTracking;
 
-  const handleStart = () => {
+  const handleStart = async () => {
     if (!canStart) return;
+    await acquireWakeLock();
     startTracking();
     addLog('info', `Rastreamento iniciado para sessão: ${sessionId}`);
   };

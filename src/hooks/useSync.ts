@@ -7,6 +7,8 @@ import type { LocationPoint } from '../types';
 
 export interface UseSyncReturn {
   syncStatus: SyncStatus;
+  acquireWakeLock: () => Promise<void>;
+  releaseWakeLock: () => Promise<void>;
 }
 
 export function useSync(): UseSyncReturn {
@@ -43,6 +45,30 @@ export function useSync(): UseSyncReturn {
     }
     return wakeLockServiceRef.current;
   }, []);
+
+  const acquireWakeLock = useCallback(async () => {
+    const wakeLockService = getWakeLockService();
+    wakeLockService.setCallbacks({
+      onStateChange: (state) => {
+        if (state === 'active') {
+          addLog('info', 'Wake Lock ativado - rastreamento continuará com tela bloqueada');
+        } else if (state === 'released') {
+          addLog('warning', 'Wake Lock liberado - rastreamento pode pausar com tela bloqueada');
+        } else if (state === 'unsupported') {
+          addLog('warning', 'Wake Lock não suportado neste navegador');
+        }
+      },
+      onError: (error) => {
+        addLog('warning', `Wake Lock falhou: ${error.message}`);
+      },
+    });
+    await wakeLockService.acquire();
+  }, [getWakeLockService, addLog]);
+
+  const releaseWakeLock = useCallback(async () => {
+    const wakeLockService = getWakeLockService();
+    await wakeLockService.release();
+  }, [getWakeLockService]);
 
   useEffect(() => {
     const syncService = getSyncService();
@@ -107,22 +133,6 @@ export function useSync(): UseSyncReturn {
     syncService.startRecoveryLoop();
 
     const wakeLockService = getWakeLockService();
-    wakeLockService.setCallbacks({
-      onStateChange: (state) => {
-        if (state === 'active') {
-          addLog('info', 'Wake Lock ativado - rastreamento continuará com tela bloqueada');
-        } else if (state === 'released') {
-          addLog('warning', 'Wake Lock liberado - rastreamento pode pausar com tela bloqueada');
-        } else if (state === 'unsupported') {
-          addLog('warning', 'Wake Lock não suportado neste navegador');
-        }
-      },
-      onError: (error) => {
-        addLog('warning', `Wake Lock falhou: ${error.message}`);
-      },
-    });
-    wakeLockService.acquire();
-
     const handleVisibilityChange = () => {
       wakeLockService.reacquireOnVisibilityChange();
     };
@@ -134,9 +144,11 @@ export function useSync(): UseSyncReturn {
       wakeLockService.release();
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
-  }, [isTracking, getLocationService, getSyncService, getWakeLockService, addLog]);
+  }, [isTracking, getLocationService, getSyncService, getWakeLockService]);
 
   return {
     syncStatus: syncStatusRef.current,
+    acquireWakeLock,
+    releaseWakeLock,
   };
 }
