@@ -1,10 +1,13 @@
 import { useEffect } from 'react';
 import { SessionProvider, useSession } from './contexts/SessionContext';
 import { SessionInput, ControlPanel, LogViewer } from './components';
+import { useSync } from './hooks/useSync';
 import './App.css';
 
 function AppContent() {
   const { setOnlineStatus, addLog } = useSession();
+  
+  useSync();
 
   useEffect(() => {
     const handleOnline = () => {

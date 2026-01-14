@@ -15,11 +15,11 @@ Integrar o `LocationService` (Tarefa 5), `StorageService` (Tarefa 6) e a API (Ta
 
 ## Subtarefas
 
-- [ ] 7.1 Criar `SyncService` ou integrar no `MainController`
-- [ ] 7.2 Implementar lógica `onLocationUpdate` -> `POST /api/track` -> `catch` -> `Storage.save`
-- [ ] 7.3 Implementar loop de recovery (ex: a cada 30s verifica se tem itens no Storage e tenta enviar em batch)
-- [ ] 7.4 Atualizar UI com status da fila (via Contexto)
-- [ ] 7.5 Testes de integração lógica (mockando network failures)
+- [x] 7.1 Criar `SyncService` ou integrar no `MainController`
+- [x] 7.2 Implementar lógica `onLocationUpdate` -> `POST /api/track` -> `catch` -> `Storage.save`
+- [x] 7.3 Implementar loop de recovery (ex: a cada 30s verifica se tem itens no Storage e tenta enviar em batch)
+- [x] 7.4 Atualizar UI com status da fila (via Contexto)
+- [x] 7.5 Testes de integração lógica (mockando network failures)
 
 ## Detalhes de Implementação
 
