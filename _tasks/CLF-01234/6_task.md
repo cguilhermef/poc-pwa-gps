@@ -14,12 +14,12 @@ Implementar a camada de armazenamento local para suportar o funcionamento offlin
 
 ## Subtarefas
 
-- [ ] 6.1 Instalar biblioteca `idb`
-- [ ] 6.2 Criar `StorageService` inicializando o banco local
-- [ ] 6.3 Implementar método `savePoint(point: LocationPoint)`
-- [ ] 6.4 Implementar método `getPendingPoints(limit: number)`
-- [ ] 6.5 Implementar método `removePoints(ids: string[])` ou estratégia de limpeza
-- [ ] 6.6 Testes unitários do StorageService
+- [x] 6.1 Instalar biblioteca `idb`
+- [x] 6.2 Criar `StorageService` inicializando o banco local
+- [x] 6.3 Implementar método `savePoint(point: LocationPoint)`
+- [x] 6.4 Implementar método `getPendingPoints(limit: number)`
+- [x] 6.5 Implementar método `removePoints(ids: string[])` ou estratégia de limpeza
+- [x] 6.6 Testes unitários do StorageService
 
 ## Detalhes de Implementação
 

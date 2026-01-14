@@ -7,6 +7,6 @@
 - [x] 3.0 Implementação da API Backend (Koa + Vercel)
 - [x] 4.0 Interface do Usuário (UI) e Gerenciamento de Sessão
 - [x] 5.0 Serviço de Geolocalização e Coleta de Dados
-- [ ] 6.0 Persistência Offline (IndexedDB)
+- [x] 6.0 Persistência Offline (IndexedDB)
 - [ ] 7.0 Motor de Sincronização (Real-time & Batch Recovery)
 - [ ] 8.0 Integração Final, Deploy e Testes
